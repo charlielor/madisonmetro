@@ -2,13 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
-	host: "us-cdbr-azure-west-a.cloudapp.net",
-	user: "b8e1294bdd60a3",
-	password: "b04229ab",
-	database: "madisonmetro"
-});
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -16,6 +9,13 @@ router.get('/', function(req, res, next) {
 
 /* GET buses */
 router.get('/getBuses', function(req, res, next) {
+	var connection = mysql.createConnection({
+		host: "us-cdbr-azure-west-a.cloudapp.net",
+		user: "b8e1294bdd60a3",
+		password: "b04229ab",
+		database: "madisonmetro"
+	});
+	
 	console.log("Get buses");
 	
 	var lon = req.query.lon;
